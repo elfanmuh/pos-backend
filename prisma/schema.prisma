@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Categories {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  items Items[]
+}
+
+model Items {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  price       Float
+  description String?
+  image       String?
+  category_id Int
+  category    Categories  @relation(fields: [category_id], references: [id])
+  orderitem   OrderItem[]
+}
+
+model Orders {
+  id            Int         @id @default(autoincrement())
+  customer_name String
+  total_amount  Float
+  orderitem     OrderItem[]
+  payments      Payment[]
+  status        StatusOrder @default(pending)
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+}
+
+model OrderItem {
+  id       Int    @id @default(autoincrement())
+  order_id Int
+  order    Orders @relation(fields: [order_id], references: [id])
+  item     Items  @relation(fields: [item_id], references: [id])
+  item_id  Int
+  quantity Int
+  subtotal Float
+}
+
+model Payment {
+  id             Int           @id @default(autoincrement())
+  order          Orders        @relation(fields: [order_id], references: [id])
+  order_id       Int
+  transaction_id String        @unique
+  payment_method PaymentMethod
+  amount         Float
+  status         StatusPayment @default(pending)
+  paid_at        DateTime?
+  created_at     DateTime      @default(now())
+}
+
+enum StatusOrder {
+  finish
+  pending
+  cancelled
+}
+
+enum StatusPayment {
+  pending
+  paid
+  cancelled
+}
+
+enum PaymentMethod {
+  qris
+  virtualaccount
+  ewallet
+}
