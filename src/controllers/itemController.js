@@ -125,53 +125,5 @@ const ItemController = {
     }
 }
 
-// Item Controller Manual
-// const ItemController = {
-//     getAll: async (req, res) => {
-//         try {
-//             const items = await ItemModel.getAll()
-//             res.json({ success: true, data: items })
-//         } catch (error) {
-//             res.status(500).json({  message: error.message })
-//         }
-//     },
-
-//     getById: async (req, res) => {
-//         try {
-//             const item = await ItemModel.getById(req.params.id)
-//             if (!item) return res.status(404).json({ message: "Item not found" })
-//             res.json({ success: true, data: item })
-//         } catch (error) {
-//             res.status(500).json({ success: false, message: error.message })
-//         }
-//     },
-
-//     create: async (req, res) => {
-//         try {
-//             const newItem = await ItemModel.create(req.body)
-//             res.status(201).json({ success: true, data: newItem })
-//         } catch (error) {
-//             res.status(500).json({ success: false, message: error.message })
-//         }
-//     },
-
-//     update: async (req, res) => {
-//         try {
-//             const updated = await ItemModel.update(req.params.id, req.body)
-//             res.json({ success: true, data: updated })
-//         } catch (error) {
-//             res.status(500).json({ success: false, message: error.message })
-//         }
-//     },
-
-//     delete: async (req, res) => {
-//         try {
-//             const result = await ItemModel.delete(req.params.id)
-//             res.json({ success: true, data: result })
-//         } catch (error) {
-//             res.status(500).json({ success: false, message: error.message })
-//         }
-//     },
-// }
 
 module.exports = ItemController
