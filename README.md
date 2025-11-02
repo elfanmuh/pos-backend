@@ -89,11 +89,11 @@ project/
 | POST   | `/api/payments`     | Tambah pembayaran baru           |
 | DELETE | `/api/payments/:id` | Hapus pembayaran                 |
 
-## Pengembang
+## 👨‍💻 Pengembang
 
-Muhammad Elfansyah
-Backend Developer - Express JS
-elfanmuh@gmail.com
-github.com/elfanmuh
+**M. Elfan**  
+Backend Developer | Express.js | Prisma | MySQL  
+📧 Email: [elfanmuh@gmail.com](mailto:elfanmuh@gmail.com)  
+🌐 GitHub: [github.com/elfanmuh](https://github.com/elfanmuh)
 
 **Proyek Ini Masih Dalam Tahap Pengembangan**
